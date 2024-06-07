@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
+import Axios from "axios";
 
-function AddNewClient() {
+function CreateClient() {
+    const [name, setName] = useState();
+    const [phone, setPhone] = useState();
+    const [email, setEmail] = useState();
+    async function handleSubmit(e) {
+      e.preventDefault();
+        try {
+            await Axios.post('http://localhost:8080/create-client', {
+                name,
+                phone,
+                email
+              })
+              console.log("Success")
+        } catch {
+            console.log("Error")
+        }
+    }
   return (
     <section className="p-8">
       <h1 className="text-2xl text-center font-bold">Add a new client</h1>
       <hr className="my-8" />
-      <form action="/submit-client-data" method="post">
+      <form onSubmit={handleSubmit}>
         <div className="mb-8">
           <label
             htmlFor="name"
@@ -14,10 +31,11 @@ function AddNewClient() {
             Name:
           </label>
           <input
+            autoFocus
+            onChange={e => setName(e.target.value)}
             type="text"
             id="name"
             name="name"
-            required
             className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -29,10 +47,10 @@ function AddNewClient() {
             Phone:
           </label>
           <input
+            onChange={e => setPhone(e.target.value)}
             type="tel"
             id="phone"
             name="phone"
-            required
             className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -44,10 +62,10 @@ function AddNewClient() {
             Email:
           </label>
           <input
+            onChange={e => setEmail(e.target.value)}
             type="email"
             id="email"
             name="email"
-            required
             className="shadow appearance-none border rounded w-full py-3 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
@@ -62,4 +80,4 @@ function AddNewClient() {
   );
 }
 
-export default AddNewClient;
+export default CreateClient;

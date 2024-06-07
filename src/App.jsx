@@ -4,7 +4,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 // Pages
 import Home from "./pages/Home";
 import ScanQR from "./pages/ScanQR";
-import AddNewClient from "./pages/AddNewClient";
+import CreateClient from "./pages/CreateClient";
 import Clients from "./pages/Clients";
 
 //Components
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scan-qr" element={<ScanQR />} />
-        <Route path="/add-new-client" element={<AddNewClient />} />
+        <Route path="/create-client" element={<CreateClient />} />
         <Route path="/clients" element={<Clients />} />
       </Routes>
     </BrowserRouter>

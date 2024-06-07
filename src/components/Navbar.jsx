@@ -17,7 +17,7 @@ function Navbar() {
             </Link>
           </li>
           <li className="text-zinc-200 bg-zinc-800 rounded">
-            <Link to="/add-new-client" className="p-3 flex text-center w-full h-full">
+            <Link to="/create-client" className="p-3 flex text-center w-full h-full">
               Add Client
             </Link>
           </li>
