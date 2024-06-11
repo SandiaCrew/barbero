@@ -1,24 +1,29 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Axios from "axios";
 
 function CreateClient() {
     const [name, setName] = useState();
     const [phone, setPhone] = useState();
     const [email, setEmail] = useState();
+    const navigate = useNavigate();
     async function handleSubmit(e) {
       e.preventDefault();
         try {
-            await Axios.post('http://localhost:8080/create-client', {
+            const response = await Axios.post('http://localhost:8080/create-client', {
                 name,
                 phone,
                 email
               })
-              console.log("Success")
+              // redirect to single client page
+              navigate(`/client/${response.data.id}`)	
+              console.log(response.data)
         } catch {
             console.log("Error")
         }
     }
   return (
+    
     <section className="p-8">
       <h1 className="text-2xl text-center font-bold">Add a new client</h1>
       <hr className="my-8" />

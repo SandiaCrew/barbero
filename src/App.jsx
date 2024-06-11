@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import ScanQR from "./pages/ScanQR";
 import CreateClient from "./pages/CreateClient";
 import Clients from "./pages/Clients";
+import ViewSingleClient from "./pages/ViewSingleClient";
 
 //Components
 import Navbar from "./components/Navbar";
@@ -17,6 +18,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/scan-qr" element={<ScanQR />} />
+        <Route path="/client/:id" element={<ViewSingleClient />} />
         <Route path="/create-client" element={<CreateClient />} />
         <Route path="/clients" element={<Clients />} />
       </Routes>
