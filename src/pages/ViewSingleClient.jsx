@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'; // Ensure you import useParams
-import Container from './Container';
+import Container from '../components/Container';
 import { Link } from 'react-router-dom';
 
 function ViewSingleClient() {
@@ -38,8 +38,9 @@ function ViewSingleClient() {
 
   return (
     <Container className={'flex flex-col'}>
-      <h1 className='text-4xl uppercase text-center text-brown-500'>{client.name}</h1>
-      <hr className='my-8'></hr>
+      <h1 className="text-2xl text-center font-bold">{client.name}</h1>
+      <hr className="my-8" />
+
       <h2 className='text-2xl mb-3'>{client.phone}</h2>
       <h3 className='text-2xl'><Link to={`mailto:${client.email}`}>{client.email}</Link></h3>
       <hr className='my-8'></hr>

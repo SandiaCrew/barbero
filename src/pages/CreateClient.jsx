@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import Container from "../components/Container";
 
 function CreateClient() {
     const [name, setName] = useState();
@@ -24,7 +25,7 @@ function CreateClient() {
     }
   return (
     
-    <section className="p-8">
+    <Container className={"flex flex-col"}>
       <h1 className="text-2xl text-center font-bold">Add a new client</h1>
       <hr className="my-8" />
       <form onSubmit={handleSubmit}>
@@ -81,7 +82,7 @@ function CreateClient() {
           Add Client
         </button>
       </form>
-    </section>
+    </Container>
   );
 }
 
