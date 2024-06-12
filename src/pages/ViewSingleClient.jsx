@@ -1,39 +1,49 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom'; // Ensure you import useParams
+import { useParams } from 'react-router-dom';
 import Container from '../components/Container';
 import { Link } from 'react-router-dom';
 
 function ViewSingleClient() {
   const [isLoading, setIsLoading] = useState(true);
   const [client, setClient] = useState(null);
+  const [visits, setVisits] = useState([]); // Add a state to store visits
 
-  const params = useParams(); // This hook extracts params from the URL
+  const params = useParams();
 
   useEffect(() => {
-    async function fetchClient() {
+    async function fetchClientAndVisits() {
+      setIsLoading(true);
       try {
-        const response = await fetch(`http://localhost:8080/client/${params.id}`); // Use backticks for template literals
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+        // Fetch the client data
+        const responseClient = await fetch(`http://localhost:8080/client/${params.id}`);
+        if (!responseClient.ok) {
+          throw new Error('Failed to fetch client');
         }
-        const data = await response.json();
-        setClient(data);
-        setIsLoading(false);
+        const dataClient = await responseClient.json();
+        setClient(dataClient);
+
+        // Fetch the visits data
+        const responseVisits = await fetch(`http://localhost:8080/client/${params.id}/visits`);
+        if (!responseVisits.ok) {
+          throw new Error('Failed to fetch visits');
+        }
+        const dataVisits = await responseVisits.json();
+        setVisits(dataVisits);
       } catch (error) {
         console.error("Failed to fetch data:", error);
-        setIsLoading(false); // Consider setting an error state to show error messages to users
       }
+      setIsLoading(false);
     }
 
-    fetchClient();
-  }, [params.id]); // Dependency array includes params.id to refetch if it changes
+    fetchClientAndVisits();
+  }, [params.id]);
 
   if (isLoading) {
     return <p>Loading...</p>;
   }
 
   if (!client) {
-    return <p>No client data found.</p>; // Handle case where no client data is available
+    return <p>No client data found.</p>;
   }
 
   return (
@@ -46,15 +56,19 @@ function ViewSingleClient() {
       <hr className='my-8'></hr>
       {client.qrcode && (
         <>
-          <p>Here we will put the generated QR code</p>
           <img src={client.qrcode} alt="QR Code" />
           <hr className='my-8'></hr>
         </>
       )}
-      {client.appointments && client.appointments.length > 0 && (
+      {visits.length > 0 && (
         <>
-          <h2>History</h2>
-          <p>Here we will put the history of appointments</p>
+          <h2>Total Visits: <span>{visits.length}</span></h2>
+          <h2>Visit History</h2>
+          <ul>
+            {visits.map(visit => (
+              <li key={visit._id}>{new Date(visit.date).toLocaleString()}</li> // Format the date nicely
+            ))}
+          </ul>
         </>
       )}
     </Container>
