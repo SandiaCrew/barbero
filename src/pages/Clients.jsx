@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom';
+
 import Container from '../components/Container'
 
 function Clients() {
@@ -23,7 +25,9 @@ function Clients() {
 
       <ul>
         {clients.map(client => (
-          <li key={client._id}>{client.name}</li>  // Each client's name in a list item
+          <li key={client._id}>
+            <Link to={`/client/${client._id}`}>{client.name}</Link>
+          </li>
           ))}
       </ul>
     </Container>
