@@ -18,10 +18,11 @@ function CreateClient() {
               })
               // redirect to single client page
               navigate(`/client/${response.data.id}`)	
-              console.log(response.data)
-        } catch {
-            console.log("Error")
-        }
+              
+            } catch (error) {
+              console.log("Error", error.response ? error.response.data : error.message);
+          }
+          
     }
   return (
     

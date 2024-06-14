@@ -56,9 +56,10 @@ function ViewSingleClient() {
       <hr className='my-8'></hr>
       {client.qrcode && (
         <>
-          <img src={client.qrcode} alt="QR Code" />
-          <hr className='my-8'></hr>
-        </>
+        <h2 className="text-xl font-bold">Client QR Code:</h2>
+        <img src={client.qrcode} alt="Client QR Code" style={{ width: '200px', height: '200px' }} />
+        <hr className='my-8'></hr>
+      </>
       )}
       {visits.length > 0 && (
         <>
