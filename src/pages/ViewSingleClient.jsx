@@ -20,6 +20,7 @@ function ViewSingleClient() {
           throw new Error('Failed to fetch client');
         }
         const dataClient = await responseClient.json();
+        console.log("Fetched client data:", dataClient);  // This should include the QR code data
         setClient(dataClient);
 
         // Fetch the visits data
@@ -46,6 +47,10 @@ function ViewSingleClient() {
     return <p>No client data found.</p>;
   }
 
+  console.log("Client state for rendering:", client);
+
+
+
   return (
     <Container className={'flex flex-col'}>
       <h1 className="text-2xl text-center font-bold">{client.name}</h1>
@@ -54,12 +59,12 @@ function ViewSingleClient() {
       <h2 className='text-2xl mb-3'>{client.phone}</h2>
       <h3 className='text-2xl'><Link to={`mailto:${client.email}`}>{client.email}</Link></h3>
       <hr className='my-8'></hr>
-      {client.qrcode && (
+      {client.qrCode && (
         <>
-        <h2 className="text-xl font-bold">Client QR Code:</h2>
-        <img src={client.qrcode} alt="Client QR Code" style={{ width: '200px', height: '200px' }} />
-        <hr className='my-8'></hr>
-      </>
+          <img src={client.qrCode} alt="Client QR Code" style={{ width: '200px', height: '200px' }} />
+          <h2 className="text-xl font-bold">Client QR Code:</h2>
+          <hr className='my-8'></hr>
+        </>
       )}
       {visits.length > 0 && (
         <>
