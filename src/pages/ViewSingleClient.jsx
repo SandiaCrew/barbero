@@ -8,7 +8,8 @@ import VisitsDisplay from '../components/VisitsDisplay';
 function ViewSingleClient() {
   const [isLoading, setIsLoading] = useState(true);
   const [client, setClient] = useState(null);
-  const [visits, setVisits] = useState([]); // Add a state to store visits
+  const [visits, setVisits] = useState([]);
+  const [showQRCode, setShowQRCode] = useState(false);  // State to control QR code visibility
 
   const params = useParams();
 
@@ -22,7 +23,6 @@ function ViewSingleClient() {
           throw new Error('Failed to fetch client');
         }
         const dataClient = await responseClient.json();
-        //console.log("Fetched client data:", dataClient);  // This should include the QR code data
         setClient(dataClient);
 
         // Fetch the visits data
@@ -41,6 +41,10 @@ function ViewSingleClient() {
     fetchClientAndVisits();
   }, [params.id]);
 
+  const toggleQRCode = () => {  // Function to toggle QR code visibility
+    setShowQRCode(!showQRCode);
+  };
+
   if (isLoading) {
     return <p>Loading...</p>;
   }
@@ -49,19 +53,21 @@ function ViewSingleClient() {
     return <p>No client data found.</p>;
   }
 
-  //console.log("Client state for rendering:", client);
-
-
-
   return (
     <Container className={'flex flex-col'}>
       <h1 className="text-2xl text-center font-bold">{client.name}</h1>
-      <hr className="my-8" />
+      <hr className="my-4" />
 
       <h2 className='text-2xl mb-3'>{client.phone}</h2>
       <h3 className='text-2xl'><Link to={`mailto:${client.email}`}>{client.email}</Link></h3>
-      <hr className='my-8'></hr>
-      <QRCodeDisplay qrCode={client.qrCode} />
+      <hr className='my-4'></hr>
+
+      <button onClick={toggleQRCode} className="my-2 p-4 w-full bg-blue-500 text-white font-bold rounded hover:bg-blue-700">
+        {showQRCode ? 'Hide QR Code' : 'Show QR Code'}
+      </button> {/* Button to toggle the QR code visibility */}
+      <hr className='my-4'></hr
+      >
+      {showQRCode && <QRCodeDisplay qrCode={client.qrCode} />} {/* Conditional rendering based on showQRCode state */}
       <VisitsDisplay visits={visits} />
     </Container>
   );

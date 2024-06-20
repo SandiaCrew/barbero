@@ -11,7 +11,7 @@ function QRCodeDisplay({ qrCode }) {
     <>
       <h2 className="text-xl font-bold">Client QR Code:</h2>
       <img src={qrCode} alt="Client QR Code" style={{ width: '100%', object: 'contain' }} />
-      <hr className='my-8'></hr>
+      <hr className='my-4'></hr>
     </>
   );
 }
