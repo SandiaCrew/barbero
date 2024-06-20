@@ -23,10 +23,10 @@ function Clients() {
       <h1 className="text-2xl text-center font-bold">Clients</h1>
       <hr className="my-8" />
 
-      <ul>
+      <ul className="divide-y divide-gray-100 rounded-lg border border-gray-200">
         {clients.map(client => (
-          <li key={client._id}>
-            <Link to={`/client/${client._id}`}>{client.name}</Link>
+          <li key={client._id} className="flex items-center justify-between text-sm leading-6 odd:bg-slate-50 hover:bg-slate-100">
+            <Link to={`/client/${client._id}`} className="inline-block w-full p-5 font-semibold text-xl">{client.name}</Link>
           </li>
           ))}
       </ul>
