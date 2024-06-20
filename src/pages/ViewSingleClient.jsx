@@ -22,7 +22,7 @@ function ViewSingleClient() {
           throw new Error('Failed to fetch client');
         }
         const dataClient = await responseClient.json();
-        console.log("Fetched client data:", dataClient);  // This should include the QR code data
+        //console.log("Fetched client data:", dataClient);  // This should include the QR code data
         setClient(dataClient);
 
         // Fetch the visits data
@@ -49,7 +49,7 @@ function ViewSingleClient() {
     return <p>No client data found.</p>;
   }
 
-  console.log("Client state for rendering:", client);
+  //console.log("Client state for rendering:", client);
 
 
 

@@ -10,7 +10,7 @@ function QRCodeDisplay({ qrCode }) {
   return (
     <>
       <h2 className="text-xl font-bold">Client QR Code:</h2>
-      <img src={qrCode} alt="Client QR Code" style={{ width: '200px', height: '200px' }} />
+      <img src={qrCode} alt="Client QR Code" style={{ width: '100%', object: 'contain' }} />
       <hr className='my-8'></hr>
     </>
   );
