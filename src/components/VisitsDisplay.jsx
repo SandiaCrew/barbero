@@ -27,7 +27,7 @@ function VisitsDisplay({ visits }) {
               p-4
               border-b border-gray-200 bg-slate-50 odd:bg-white first-of-type:rounded-t-lg last-of-type:rounded-b-lg last-of-type:border-b-0"
             >
-              {new Date(visit.date).toLocaleString()}
+              {new Date(visit.date).toLocaleDateString('en-GB')}
             </li> // Format the date nicely
           ))}
         </ul>
