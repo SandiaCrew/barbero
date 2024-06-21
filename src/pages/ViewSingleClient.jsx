@@ -4,6 +4,10 @@ import Container from '../components/Container';
 import { Link } from 'react-router-dom';
 import QRCodeDisplay from '../components/QRCodeDisplay';
 import VisitsDisplay from '../components/VisitsDisplay';
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoMailOutline } from "react-icons/io5";
+
+
 
 function ViewSingleClient() {
   const [isLoading, setIsLoading] = useState(true);
@@ -55,20 +59,25 @@ function ViewSingleClient() {
 
   return (
     <Container className={'flex flex-col'}>
-      <h1 className="text-2xl text-center font-bold">{client.name}</h1>
-      <hr className="my-4" />
+      
+      <h1 className="text-2xl text-center font-bold text-sky-950 uppercase mb-3">{client.name}</h1>
+      
+      <ul className="border rounded-md text-lg mb-8">
+        <li className='flex justify-start items-center gap-4 p-4 text-gray-700 border-b'>
+          <FaPhoneAlt /> {client.phone}
+        </li>
+        <li className='flex justify-start items-center gap-4 p-4'>
+          <IoMailOutline /> <Link to={`mailto:${client.email}`} className='underline text-sky-500 hover:text-sky-800'>{client.email}</Link>
+        </li>
+      </ul>
 
-      <h2 className='text-2xl mb-3'>{client.phone}</h2>
-      <h3 className='text-2xl'><Link to={`mailto:${client.email}`}>{client.email}</Link></h3>
-      <hr className='my-4'></hr>
-
-      <button onClick={toggleQRCode} className="my-2 p-4 w-full bg-blue-500 text-white font-bold rounded hover:bg-blue-700">
+      <button onClick={toggleQRCode} className="mb-4 p-4 w-full bg-blue-500 text-white font-bold rounded hover:bg-blue-700">
         {showQRCode ? 'Hide QR Code' : 'Show QR Code'}
       </button> {/* Button to toggle the QR code visibility */}
-      <hr className='my-4'></hr
-      >
+
       {showQRCode && <QRCodeDisplay qrCode={client.qrCode} />} {/* Conditional rendering based on showQRCode state */}
-      <VisitsDisplay visits={visits} />
+
+      <VisitsDisplay visits={visits} className="mt-8"/>
     </Container>
   );
 }
