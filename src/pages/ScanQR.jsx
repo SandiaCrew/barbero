@@ -88,7 +88,7 @@ function ScanQR() {
     <Container className={'flex flex-col'}>
       <h1 className="text-2xl text-center font-bold">Scan QR</h1>
       <hr className="my-8" />
-      <div id="qr-reader" ref={qrRef} style={{ width: '100%', height: '250px' }} />
+      <div id="qr-reader" ref={qrRef} style={{ width: '100%', height: '500px' }} />
       {error && <p className="text-red-500">{error}</p>}
       <button 
         onClick={startScanning} 
