@@ -9,7 +9,7 @@ function Clients() {
   const [searchTerm, setSearchTerm] = useState('');  // State to hold the search term
   
   useEffect(() => {
-    axios.get('http://localhost:8080/clients')
+    axios.get('https://barbero-backend-5gj8.onrender.com/clients')
          .then(response => {
              setClients(response.data);  // Assuming the data is an array of client objects
          })

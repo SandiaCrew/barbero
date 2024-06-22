@@ -11,7 +11,7 @@ function CreateClient() {
     async function handleSubmit(e) {
       e.preventDefault();
         try {
-            const response = await Axios.post('http://localhost:8080/create-client', {
+            const response = await Axios.post('https://barbero-backend-5gj8.onrender.com/create-client', {
                 name,
                 phone,
                 email

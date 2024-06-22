@@ -22,7 +22,7 @@ function ViewSingleClient() {
       setIsLoading(true);
       try {
         // Fetch the client data
-        const responseClient = await fetch(`http://localhost:8080/client/${params.id}`);
+        const responseClient = await fetch(`https://barbero-backend-5gj8.onrender.com/client/${params.id}`);
         if (!responseClient.ok) {
           throw new Error('Failed to fetch client');
         }
@@ -30,7 +30,7 @@ function ViewSingleClient() {
         setClient(dataClient);
 
         // Fetch the visits data
-        const responseVisits = await fetch(`http://localhost:8080/client/${params.id}/visits`);
+        const responseVisits = await fetch(`https://barbero-backend-5gj8.onrender.com/client/${params.id}/visits`);
         if (!responseVisits.ok) {
           throw new Error('Failed to fetch visits');
         }

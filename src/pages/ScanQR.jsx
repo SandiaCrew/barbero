@@ -60,7 +60,7 @@ function ScanQR() {
 
   // Function to log the visit using an API call
   function logVisit(clientId) {
-    fetch(`http://localhost:8080/client/${clientId}/create-visit`, {
+    fetch(`https://barbero-backend-5gj8.onrender.com/client/${clientId}/create-visit`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
