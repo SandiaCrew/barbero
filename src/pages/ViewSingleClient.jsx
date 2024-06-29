@@ -21,6 +21,8 @@ function ViewSingleClient() {
       try {
         // Base URL from environment variables
         const baseURL = import.meta.env.VITE_API_BASE_URL;
+        console.log(`Base URL: ${import.meta.env.VITE_API_BASE_URL}`);
+
 
         // Fetch the client data
         const responseClient = await fetch(`${baseURL}/client/${params.id}`);
