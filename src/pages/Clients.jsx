@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom';
-
 import Container from '../components/Container'
 
 function Clients() {
@@ -9,13 +8,19 @@ function Clients() {
   const [searchTerm, setSearchTerm] = useState('');  // State to hold the search term
   
   useEffect(() => {
-    axios.get('https://barbero-backend-5gj8.onrender.com/clients')
-         .then(response => {
-             setClients(response.data);  // Assuming the data is an array of client objects
-         })
-         .catch(error => {
-             console.error('Error loading clients:', error);
-         });
+    const fetchClients = async () => {
+      try {
+        // Base URL from environment variables
+        const baseURL = import.meta.env.VITE_API_BASE_URL;
+
+        const response = await axios.get(`${baseURL}/clients`);
+        setClients(response.data);  // Assuming the data is an array of client objects
+      } catch (error) {
+        console.error('Error loading clients:', error);
+      }
+    };
+
+    fetchClients();
   }, []);
 
   const filteredClients = clients.filter(client => 
@@ -42,8 +47,6 @@ function Clients() {
           </li>
           ))}
       </ul>
-
-      
     </Container>
   )
 }

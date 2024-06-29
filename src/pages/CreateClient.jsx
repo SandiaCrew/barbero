@@ -4,28 +4,27 @@ import Axios from "axios";
 import Container from "../components/Container";
 
 function CreateClient() {
-    const [name, setName] = useState();
-    const [phone, setPhone] = useState();
-    const [email, setEmail] = useState();
-    const navigate = useNavigate();
-    async function handleSubmit(e) {
-      e.preventDefault();
-        try {
-            const response = await Axios.post('https://barbero-backend-5gj8.onrender.com/create-client', {
-                name,
-                phone,
-                email
-              })
-              // redirect to single client page
-              navigate(`/client/${response.data.id}`)	
-              
-            } catch (error) {
-              console.log("Error", error.response ? error.response.data : error.message);
-          }
-          
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try {
+      const response = await Axios.post(`${import.meta.env.VITE_API_BASE_URL}/create-client`, {
+        name,
+        phone,
+        email
+      });
+      // redirect to single client page
+      navigate(`/client/${response.data.id}`);
+    } catch (error) {
+      console.log("Error", error.response ? error.response.data : error.message);
     }
+  }
+
   return (
-    
     <Container className={"flex flex-col"}>
       <h1 className="text-2xl text-center font-bold">Add a new client</h1>
       <hr className="my-8" />
@@ -39,7 +38,7 @@ function CreateClient() {
           </label>
           <input
             autoFocus
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             type="text"
             id="name"
             name="name"
@@ -54,7 +53,7 @@ function CreateClient() {
             Phone:
           </label>
           <input
-            onChange={e => setPhone(e.target.value)}
+            onChange={(e) => setPhone(e.target.value)}
             type="tel"
             id="phone"
             name="phone"
@@ -69,7 +68,7 @@ function CreateClient() {
             Email:
           </label>
           <input
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
             id="email"
             name="email"

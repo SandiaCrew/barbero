@@ -7,8 +7,6 @@ import VisitsDisplay from '../components/VisitsDisplay';
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoMailOutline } from "react-icons/io5";
 
-
-
 function ViewSingleClient() {
   const [isLoading, setIsLoading] = useState(true);
   const [client, setClient] = useState(null);
@@ -21,8 +19,11 @@ function ViewSingleClient() {
     async function fetchClientAndVisits() {
       setIsLoading(true);
       try {
+        // Base URL from environment variables
+        const baseURL = import.meta.env.VITE_API_BASE_URL;
+
         // Fetch the client data
-        const responseClient = await fetch(`https://barbero-backend-5gj8.onrender.com/client/${params.id}`);
+        const responseClient = await fetch(`${baseURL}/client/${params.id}`);
         if (!responseClient.ok) {
           throw new Error('Failed to fetch client');
         }
@@ -30,7 +31,7 @@ function ViewSingleClient() {
         setClient(dataClient);
 
         // Fetch the visits data
-        const responseVisits = await fetch(`https://barbero-backend-5gj8.onrender.com/client/${params.id}/visits`);
+        const responseVisits = await fetch(`${baseURL}/client/${params.id}/visits`);
         if (!responseVisits.ok) {
           throw new Error('Failed to fetch visits');
         }
