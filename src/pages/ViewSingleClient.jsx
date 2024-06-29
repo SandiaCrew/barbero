@@ -60,7 +60,6 @@ function ViewSingleClient() {
 
   return (
     <Container className={'flex flex-col'}>
-      
       <h1 className="text-2xl text-center font-bold text-sky-950 uppercase mb-3">{client.name}</h1>
       
       <ul className="border rounded-md text-lg mb-8">

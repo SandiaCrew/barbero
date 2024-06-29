@@ -16,7 +16,7 @@ function QRCodeDisplay({ qrCode }) {
         await navigator.share({
           files: [file],
           title: 'Client QR Code',
-          text: 'Here is a QR Code for our client. Please check it out!'
+          text: 'Your personal BarberShow QR code. Keep it safe, and show it next time you visit us!'
         });
 
         console.log('QR Code shared successfully!');
